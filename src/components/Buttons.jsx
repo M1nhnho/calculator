@@ -1,25 +1,7 @@
-export default function Buttons({ setTotal, setOperands, setOperators })
+import { useEffect, useState } from 'react';
+
+export default function Buttons({ concatenateOperand, undoOperand, addOperator })
 {
-    function concatenateOperand(digit)
-    {
-        setOperands((currOperands) =>
-        {
-            const operandsCopy = [...currOperands];
-            operandsCopy[operandsCopy.length - 1] += digit;
-            return operandsCopy;
-        });
-    }
-
-    function undoOperand()
-    {
-        setOperands((currOperands) =>
-        {
-            const operandsCopy = [...currOperands];
-            operandsCopy[operandsCopy.length - 1] = operandsCopy[operandsCopy.length - 1].slice(0, -1);
-            return operandsCopy;
-        });
-    }
-
     return (
         <>
             <div>
@@ -37,11 +19,11 @@ export default function Buttons({ setTotal, setOperands, setOperators })
             <div>
                 <button>C</button>
                 <button onClick={() => { undoOperand() }}>⌫</button>
-                <button>+</button>
-                <button>-</button>
-                <button>×</button>
-                <button>÷</button>
-                <button>=</button>
+                <button onClick={() => { addOperator('+') }}>+</button>
+                <button onClick={() => { addOperator('-') }}>-</button>
+                <button onClick={() => { addOperator('×') }}>×</button>
+                <button onClick={() => { addOperator('÷') }}>÷</button>
+                <button onClick={() => { addOperator('=') }}>=</button>
             </div>
         </>
     )

@@ -1,11 +1,11 @@
 import './Display.css';
 
-export default function Display({ total, operands, operators })
+export default function Display({ total, expression, lastOperand })
 {
     return (
         <div>
-            <p id='expression'>{operands.join(',')}</p>
-            <p>{operands.slice(-1)}</p>
+            <p id='expression-display'>{expression.join(' ')}</p>
+            <p>{lastOperand || total}</p>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Buttons from "./Buttons.jsx";
-import Display from './Display.jsx';
+import Display from './Display/Display.jsx';
 
 export default function Calculator()
 {

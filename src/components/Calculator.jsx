@@ -1,18 +1,30 @@
 import { useEffect, useState } from 'react';
-import Buttons from "./Buttons.jsx";
+import Buttons from "./Buttons/Buttons.jsx";
 import Display from './Display/Display.jsx';
 
 export default function Calculator()
 {
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState(null);
     const [expression, setExpression] = useState([]);
     const [lastOperand, setLastOperand] = useState('');
     const [isOperating, setIsOperating] = useState(false);
+    
+    function clearExpression()
+    {
+        /* Later implement functionality for CE instead of only C */
+        setExpression([]);
+        setLastOperand('');
+    }
 
     function concatenateOperand(digit)
     {
         setLastOperand((currLastOperand) =>
         {
+            if (total)
+            {
+                setTotal(null);
+                setExpression([]);
+            }
             if (isOperating)
             {
                 setIsOperating(false);
@@ -46,44 +58,47 @@ export default function Calculator()
             }
             return expressionCopy;
         })
-        setIsOperating(true);
     }
 
     useEffect(() =>
     {
-        if (expression[expression.length - 1] === '=')
+        if (expression.length > 1)
         {
-            setLastOperand('')
-            setTotal(() =>
+            !isOperating && setIsOperating(true);
+            if (expression[expression.length - 1] === '=')
             {
-                let total = expression[0];
-                for (let i = 1; i < expression.length - 1; i += 2)
+                setLastOperand('')
+                setTotal(() =>
                 {
-                    switch(expression[i])
+                    let total = expression[0];
+                    for (let i = 1; i < expression.length - 1; i += 2)
                     {
-                        case '+':
-                            total += expression[i + 1];
-                            break;
-                        case '-':
-                            total -= expression[i + 1];
-                            break;
-                        case '×':
-                            total *= expression[i + 1];
-                            break;
-                        case '÷':
-                            total /= expression[i + 1];
-                            break;
+                        switch(expression[i])
+                        {
+                            case '+':
+                                total += expression[i + 1];
+                                break;
+                            case '-':
+                                total -= expression[i + 1];
+                                break;
+                            case '×':
+                                total *= expression[i + 1];
+                                break;
+                            case '÷':
+                                total /= expression[i + 1];
+                                break;
+                        }
                     }
-                }
-                return total;
-            });
+                    return total;
+                });
+            }
         }
     }, [expression])
 
     return (
         <>
             <Display total={total} expression={expression} lastOperand={lastOperand} />
-            <Buttons concatenateOperand={concatenateOperand} undoOperand={undoOperand} addOperator={addOperator} />
+            <Buttons clearExpression={clearExpression} concatenateOperand={concatenateOperand} undoOperand={undoOperand} addOperator={addOperator} />
         </>
     )
 }

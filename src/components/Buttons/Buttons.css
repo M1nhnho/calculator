@@ -1,0 +1,130 @@
+#clear-button
+{
+    grid-area: clear;
+}
+
+#backspace-button
+{
+    grid-area: backspace;
+}
+
+#nine-button
+{
+    grid-area: nine;
+}
+
+#eight-button
+{
+    grid-area: eight;
+}
+
+#seven-button
+{
+    grid-area: seven;
+}
+
+#six-button
+{
+    grid-area: six;
+}
+
+#five-button
+{
+    grid-area: five;
+}
+
+#four-button
+{
+    grid-area: four;
+}
+
+#three-button
+{
+    grid-area: three;
+}
+
+#two-button
+{
+    grid-area: two;
+}
+
+#one-button
+{
+    grid-area: one;
+}
+
+#zero-button
+{
+    grid-area: zero;
+}
+
+#add-button
+{
+    grid-area: add;
+}
+
+#subtract-button
+{
+    grid-area: subtract;
+}
+
+#multiply-button
+{
+    grid-area: multiply;
+}
+
+#divide-button
+{
+    grid-area: divide;
+}
+
+#equals-button
+{
+    grid-area: equals;
+}
+
+#buttons
+{
+    display: grid;
+    justify-content: center;
+    grid-gap: 10px;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px;
+    grid-template-areas:
+        "clear clear backspace backspace"
+        "seven eight nine add"
+        "four five six subtract"
+        "one two three multiply"
+        ". zero . divide"
+        ". . equals equals";
+}
+
+.round-button
+{
+    font-size: 18px;
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgb(220, 220, 220);
+    border-top-width: 1px;
+    border-bottom-width: 6px;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.1s;
+    &:active
+    {
+        border-width: 1px;
+        border-top-width: 2px;
+    }
+}
+
+.red-button
+{
+    background-color: rgb(255, 200, 200);
+    border-color: rgb(240, 120, 120);
+}
+
+.blue-button
+{
+    background-color: rgb(200, 200, 255);
+    border-color: rgb(120, 120, 240);
+}

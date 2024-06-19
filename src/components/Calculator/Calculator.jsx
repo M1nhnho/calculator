@@ -1,6 +1,7 @@
+import './Calculator.css';
 import { useEffect, useState } from 'react';
-import Buttons from "./Buttons/Buttons.jsx";
-import Display from './Display/Display.jsx';
+import Buttons from "../Buttons/Buttons.jsx";
+import Display from '../Display/Display.jsx';
 
 export default function Calculator()
 {
@@ -12,6 +13,7 @@ export default function Calculator()
     function clearExpression()
     {
         /* Later implement functionality for CE instead of only C */
+        setTotal(null);
         setExpression([]);
         setLastOperand('');
     }
@@ -96,9 +98,9 @@ export default function Calculator()
     }, [expression])
 
     return (
-        <>
+        <div id='calculator'>
             <Display total={total} expression={expression} lastOperand={lastOperand} />
             <Buttons clearExpression={clearExpression} concatenateOperand={concatenateOperand} undoOperand={undoOperand} addOperator={addOperator} />
-        </>
+        </div>
     )
 }

@@ -9,6 +9,7 @@
     background-color: rgb(200, 255, 200);
     box-shadow: inset 0 0px 20px rgba(0, 200, 0, 0.2);
     color: black;
+    word-wrap: break-word;
 }
 
 #expression

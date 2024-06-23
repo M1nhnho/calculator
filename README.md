@@ -1,5 +1,5 @@
 # Calculator
-A simple calculator which can be viewed at  
+A simple calculator app which can be viewed at  
 ➤ https://m1nhnho.github.io/calculator/
 
 Supports addition, subtraction, multiplication, and division.  

@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
 import './Buttons.css';
+import DeleteButton from '../DeleteButton.jsx';
+import OperandButton from '../OperandButton.jsx';
+import OperatorButton from '../OperatorButton.jsx';
 
 export default function Buttons({ clearExpression, concatenateOperand, undoOperand, addOperator })
 {
@@ -27,7 +30,15 @@ export default function Buttons({ clearExpression, concatenateOperand, undoOpera
 
     function handleKeyDown(event)
     {
-        event.key in buttonReferences && buttonReferences[event.key].current.classList.add('active');
+        if (event.key === '/')
+        {
+            event.preventDefault();
+        }
+        if (event.key in buttonReferences)
+        {
+            buttonReferences[event.key].current.click();
+            buttonReferences[event.key].current.classList.add('active');
+        }
     }
     function handleKeyUp(event)
     {
@@ -47,45 +58,27 @@ export default function Buttons({ clearExpression, concatenateOperand, undoOpera
 
     return (
         <div id='buttons'>
-            <button id='clear-button' className='round-button red-button' ref={buttonReferences['c']}
-                onClick={() => { clearExpression() }}>C</button>
-            <button id='backspace-button' className='round-button red-button' ref={buttonReferences['Backspace']}
-                onClick={() => { undoOperand() }}>⌫</button>
+            <DeleteButton buttonReferences={buttonReferences} clickFunction={clearExpression} name={'clear'} character={'C'} refKey={'c'} />
+            <DeleteButton buttonReferences={buttonReferences} clickFunction={undoOperand} name={'backspace'} character={'⌫'} refKey={'Backspace'} />
 
-            <button id='zero-button' className='round-button' ref={buttonReferences['0']}
-                onClick={() => { concatenateOperand('0') }}>0</button>
-            <button id='one-button' className='round-button' ref={buttonReferences['1']}
-                onClick={() => { concatenateOperand('1') }}>1</button>
-            <button id='two-button' className='round-button' ref={buttonReferences['2']}
-                onClick={() => { concatenateOperand('2') }}>2</button>
-            <button id='three-button' className='round-button' ref={buttonReferences['3']}
-                onClick={() => { concatenateOperand('3') }}>3</button>
-            <button id='four-button' className='round-button' ref={buttonReferences['4']}
-                onClick={() => { concatenateOperand('4') }}>4</button>
-            <button id='five-button' className='round-button' ref={buttonReferences['5']}
-                onClick={() => { concatenateOperand('5') }}>5</button>
-            <button id='six-button' className='round-button' ref={buttonReferences['6']}
-                onClick={() => { concatenateOperand('6') }}>6</button>
-            <button id='seven-button' className='round-button' ref={buttonReferences['7']}
-                onClick={() => { concatenateOperand('7') }}>7</button>
-            <button id='eight-button' className='round-button' ref={buttonReferences['8']}
-                onClick={() => { concatenateOperand('8') }}>8</button>
-            <button id='nine-button' className='round-button' ref={buttonReferences['9']}
-                onClick={() => { concatenateOperand('9') }}>9</button>
-            <button id='dot-button' className='round-button' ref={buttonReferences['.']}
-                onClick={() => { concatenateOperand('.') }}>.</button>
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'zero'} character={'0'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'one'} character={'1'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'two'} character={'2'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'three'} character={'3'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'four'} character={'4'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'five'} character={'5'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'six'} character={'6'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'seven'} character={'7'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'eight'} character={'8'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'nine'} character={'9'} />
+            <OperandButton buttonReferences={buttonReferences} concatenateOperand={concatenateOperand} name={'dot'} character={'.'} />
 
-            <button id='add-button' className='round-button blue-button' ref={buttonReferences['+']}
-                onClick={() => { addOperator('+') }}>+</button>
-            <button id='subtract-button' className='round-button blue-button' ref={buttonReferences['-']}
-                onClick={() => { addOperator('-') }}>-</button>
-            <button id='multiply-button' className='round-button blue-button' ref={buttonReferences['*']}
-                onClick={() => { addOperator('×') }}>×</button>
-            <button id='divide-button' className='round-button blue-button' ref={buttonReferences['/']}
-                onClick={() => { addOperator('÷') }}>÷</button>
+            <OperatorButton buttonReferences={buttonReferences} addOperator={addOperator} name={'add'} character={'+'} />
+            <OperatorButton buttonReferences={buttonReferences} addOperator={addOperator} name={'subtract'} character={'-'} />
+            <OperatorButton buttonReferences={buttonReferences} addOperator={addOperator} name={'multiply'} character={'×'} refKey={'*'} />
+            <OperatorButton buttonReferences={buttonReferences} addOperator={addOperator} name={'divide'} character={'÷'} refKey={'/'} />
 
-            <button id='equals-button' className='round-button blue-button' ref={buttonReferences['Enter']}
-                onClick={() => { addOperator('=') }}>=</button>
+            <OperatorButton buttonReferences={buttonReferences} addOperator={addOperator} name={'equals'} character={'='} refKey={'Enter'} />
         </div>
     )
 }

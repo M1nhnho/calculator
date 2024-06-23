@@ -58,6 +58,11 @@
     grid-area: zero;
 }
 
+#dot-button
+{
+    grid-area: dot;
+}
+
 #add-button
 {
     grid-area: add;
@@ -96,7 +101,7 @@
         "seven eight nine add"
         "four five six subtract"
         "one two three multiply"
-        ". zero . divide"
+        ". zero dot divide"
         ". . equals equals";
 }
 

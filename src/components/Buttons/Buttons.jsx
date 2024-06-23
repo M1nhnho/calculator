@@ -29,6 +29,8 @@ export default function Buttons({ clearExpression, concatenateOperand, undoOpera
                 onClick={() => { concatenateOperand('8') }}>8</button>
             <button id='nine-button' className='round-button'
                 onClick={() => { concatenateOperand('9') }}>9</button>
+            <button id='dot-button' className='round-button'
+                onClick={() => { concatenateOperand('.') }}>.</button>
 
             <button id='add-button' className='round-button blue-button'
                 onClick={() => { addOperator('+') }}>+</button>

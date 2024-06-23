@@ -32,7 +32,11 @@ export default function Calculator()
                 setIsOperating(false);
                 return digit;
             }
-            return !currLastOperand && digit === '0' ? currLastOperand : currLastOperand + digit;
+            if (!currLastOperand && digit === '.')
+            {
+                return '0.'
+            }
+            return (!currLastOperand && digit === '0') || (digit === '.' && currLastOperand.includes('.')) ? currLastOperand : currLastOperand + digit;
         });
     }
 

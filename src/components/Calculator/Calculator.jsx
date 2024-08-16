@@ -30,9 +30,9 @@ export default function Calculator()
             if (isOperating)
             {
                 setIsOperating(false);
-                return digit;
+                return digit === '.' ? '0.' : digit;
             }
-            if (!currLastOperand && digit === '.')
+            else if (!currLastOperand && digit === '.')
             {
                 return '0.'
             }
